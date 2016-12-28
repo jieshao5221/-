@@ -9,10 +9,12 @@ import android.widget.FrameLayout;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import Const.Const;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fragment.BlankFragment;
+import presenter.ImplPresenter.NewsPresenterImpl;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
@@ -47,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         ButterKnife.bind(this);
         setDefaultFragment();
         initViews();
+
+        NewsPresenterImpl newsPresenter = new NewsPresenterImpl();
+        newsPresenter.getNewsData("top",Const.APP_KEY);
+
     }
 
     private void initViews() {
@@ -91,4 +97,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     public void onTabReselected(int position) {
 
     }
+
+
+
+
 }
