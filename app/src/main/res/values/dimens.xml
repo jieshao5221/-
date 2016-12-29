@@ -2,4 +2,23 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--页面标题-->
+    <dimen name="page_title">20dp</dimen>
+    <!--新闻页导航栏高度-->
+    <dimen name="news_navigation_height">40dp</dimen>
+    <!--新闻页appBarLayout-->
+    <dimen name="news_appbarbayout_height">100dp</dimen>
+    <!--新闻item 布局01、02图片宽高-->
+    <dimen name="news01_img_width">100dp</dimen>
+    <dimen name="news01_img_height">80dp</dimen>
+    <!--新闻item 布局03图片高-->
+    <dimen name="news03_img_height">180dp</dimen>
+    <!--新闻item标题字号-->
+    <dimen name="news_title">16dp</dimen>
+    <!--新闻item时间、作者字号-->
+    <dimen name="news_data">10dp</dimen>
+    <!--新闻margin-->
+    <dimen name="news_margin">10dp</dimen>
+
+
 </resources>

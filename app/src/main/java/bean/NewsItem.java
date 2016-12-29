@@ -45,4 +45,6 @@ public class NewsItem {
 
     public String realtype;//类型2
 
+    public int showType;//展示方式 0. 大图 1.小图左 2.小图右
+
 }

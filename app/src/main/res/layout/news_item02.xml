@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/news_margin"
+    >
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:id="@+id/news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:textSize="@dimen/news_title"
+            android:layout_alignParentTop="true"
+            />
+
+        <TextView
+            android:id="@+id/news_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/news_data"
+            android:textColor="@android:color/darker_gray"
+            android:layout_alignParentBottom="true"/>
+
+        <TextView
+            android:id="@+id/news_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/news_data"
+            android:textColor="@android:color/darker_gray"
+            android:layout_toRightOf="@+id/news_data"
+            android:layout_marginLeft="@dimen/news_margin"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv"
+        android:layout_width="@dimen/news01_img_width"
+        android:layout_height="@dimen/news01_img_height"
+        android:scaleType="centerInside"
+        />
+
+
+</LinearLayout>

@@ -39,4 +39,7 @@ dependencies {
     compile 'com.google.code.gson:gson:+'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
+
+    /**fresco*/
+    compile 'com.facebook.fresco:fresco:0.12.0'
 }
