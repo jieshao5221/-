@@ -21,18 +21,18 @@ import butterknife.ButterKnife;
  * Created by renlijie on 16/12/28.
  */
 
-public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsItemViewHolder>{
+public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private ArrayList<NewsItem> itemList = new ArrayList<>();
     private Context context;
-    private int ViewType = 0; //0. 大图 1.小图左 2.小图右
+    private int ViewType = 0; //0. 大图 1.小图左 2.小图右 3.loadMore
 
     public NewsItemAdapter(Context context){
         this.context = context;
     }
 
     @Override
-    public NewsItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         switch (ViewType){
             case 0:
@@ -44,12 +44,24 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsIt
             case 2:
                 return new NewsItemViewHolder(LayoutInflater.from(context)
                         .inflate(R.layout.news_item02,null));
+            case 3:
+                return new LoadMoreViewHolder(LayoutInflater.from(context)
+                        .inflate(R.layout.load_more,parent,false));
         }
         return null;
     }
 
     @Override
-    public void onBindViewHolder(NewsItemViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        if(holder instanceof NewsItemViewHolder){
+            NewsItemViewHolder((NewsItemViewHolder) holder,position);
+        }
+    }
+
+
+
+    public void NewsItemViewHolder(NewsItemViewHolder holder, int position) {
 
         NewsItem item = itemList.get(position);
 
@@ -65,13 +77,17 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsIt
     @Override
     public int getItemCount() {
 
-        return itemList.size();
+        return itemList.size() !=0 ? itemList.size()+1 :itemList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
 
-        ViewType = itemList.get(position).showType;
+        if(getItemCount() == position + 1){
+            ViewType = 3;
+        }else {
+            ViewType = itemList.get(position).showType;
+        }
 
         return ViewType;
     }
@@ -83,6 +99,15 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemAdapter.NewsIt
     public void addItems(ArrayList<NewsItem> arrayList){
         itemList.addAll(arrayList);
         notifyDataSetChanged();
+
+    }
+
+
+    class LoadMoreViewHolder extends RecyclerView.ViewHolder{
+
+        public LoadMoreViewHolder(View itemView) {
+            super(itemView);
+        }
     }
 
     class NewsItemViewHolder extends RecyclerView.ViewHolder{

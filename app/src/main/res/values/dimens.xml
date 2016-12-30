@@ -19,6 +19,7 @@
     <dimen name="news_data">10dp</dimen>
     <!--新闻margin-->
     <dimen name="news_margin">10dp</dimen>
+    <dimen name="load_more_height">35dp</dimen>
 
 
 </resources>

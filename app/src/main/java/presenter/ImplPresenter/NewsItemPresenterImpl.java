@@ -30,7 +30,6 @@ public class NewsItemPresenterImpl extends BasePresenter implements INewsItemPre
      */
     @Override
     public void getNewsData(String type, String appKey) {
-
         Subscription s = RetrofitUtils.getRetrofit().create(NewsService.class).getTopNews(type, appKey)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
