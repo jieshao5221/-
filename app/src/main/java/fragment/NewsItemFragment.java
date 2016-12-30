@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.qiao.rlj.myapplication.R;
 
@@ -41,12 +42,14 @@ public class NewsItemFragment extends BaseFragment implements INewsItemFragment,
 
     private ArrayList<NewsItem> oldNewsItems = new ArrayList<>();
 
-    @BindView(R.id.rv)
-    RecyclerView recyclerView;
     private Unbinder unbinder;
 
+    @BindView(R.id.rv)
+    RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.empty_view)
+    LinearLayout emptyView;
 
     @BindColor(R.color.colorPrimary)
     int color; //进度条颜色
@@ -126,17 +129,23 @@ public class NewsItemFragment extends BaseFragment implements INewsItemFragment,
 
     @Override
     public void showProgressDialog() {
+        if(emptyView.getVisibility() == View.VISIBLE){
+            emptyView.setVisibility(View.GONE);
+        }
         swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hidProgressDialog() {
+        if(emptyView.getVisibility() == View.VISIBLE){
+            emptyView.setVisibility(View.GONE);
+        }
         swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void showError(String error) {
-
+        emptyView.setVisibility(View.VISIBLE);
     }
 
     @Override
