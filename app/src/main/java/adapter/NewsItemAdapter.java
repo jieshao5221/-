@@ -1,15 +1,18 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qiao.rlj.myapplication.R;
+import com.qiao.rlj.myapplication.WebActivity;
 
 import java.util.ArrayList;
 
@@ -63,7 +66,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void NewsItemViewHolder(NewsItemViewHolder holder, int position) {
 
-        NewsItem item = itemList.get(position);
+        final NewsItem item = itemList.get(position);
 
         Uri uri = Uri.parse(item.thumbnailPics03);
         holder.sdv.setImageURI(uri);
@@ -71,6 +74,16 @@ public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.date.setText(item.date);
         holder.author.setText(item.authorName);
         holder.title.setText(item.title);
+        holder.ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, WebActivity.class);
+                intent.putExtra("url",item.url);
+                intent.putExtra("author",item.authorName);
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -121,6 +134,9 @@ public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView author;
         @BindView(R.id.news_title)
         TextView title;
+        @BindView(R.id.news_ll)
+        LinearLayout ll;
+
         public NewsItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

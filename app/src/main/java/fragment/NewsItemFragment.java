@@ -78,7 +78,7 @@ public class NewsItemFragment extends BaseFragment implements INewsItemFragment,
         swipeRefreshLayout.setColorSchemeColors(color);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        adapter = new NewsItemAdapter(getContext());
+        adapter = new NewsItemAdapter(getActivity());
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
