@@ -112,6 +112,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     class NewsItemViewHolder extends RecyclerView.ViewHolder{
 
+
         @BindView(R.id.sdv)
         SimpleDraweeView sdv;
         @BindView(R.id.news_data)
