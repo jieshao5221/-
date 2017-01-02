@@ -23,16 +23,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     FrameLayout container;//fragment容器
 
     /** BindResource */
-    @BindString(R.string.home)
-    String home;
-    @BindString(R.string.books)
-    String books;
-    @BindString(R.string.games)
-    String games;
-    @BindString(R.string.music)
-    String music;
-    @BindString(R.string.favorite)
-    String favorite;
+    @BindString(R.string.news)
+    String news;
+    @BindString(R.string.girls)
+    String girls;
+    @BindString(R.string.mine)
+    String mine;
 
 
     @Override
@@ -53,11 +49,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         bottomNavigationBar.setActiveColor(R.color.colorPrimary);
-        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.ic_home_white_24dp,home))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_book_white_24dp,books))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_music_note_white_24dp,music))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_videogame_asset_white_24dp,games))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_favorite_white_24dp,favorite))
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.ic_home_white_24dp,news))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_book_white_24dp,girls))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_favorite_white_24dp,mine))
                 .setFirstSelectedPosition(0)
                 .setTabSelectedListener(this)
                 .initialise();

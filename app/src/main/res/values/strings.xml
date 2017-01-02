@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="home">Home</string>
-    <string name="books">Books</string>
-    <string name="favorite">Favorite</string>
-    <string name="music">Music</string>
-    <string name="games">Games</string>
+    <string name="news">头条</string>
+    <string name="girls">妹子</string>
+    <string name="mine">我的</string>
     <string name="news_title">新闻头条</string>
     <string name="retry">重新加载</string>
     <string name="load_failed">加载失败,下拉重新加载 ...</string>
