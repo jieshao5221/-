@@ -2,6 +2,10 @@ package bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+
 /**
  * Created by renlijie on 16/12/27.
  * "title": "巫山云雨枉断肠：女摄影师Erika Lust记录的性爱",
@@ -19,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
    "realtype": "娱乐"
  */
 
+@Entity
 public class NewsItem {
 
     public String title;//标题
@@ -39,6 +44,7 @@ public class NewsItem {
 
     public String url;//新闻链接
 
+    @Id
     public String uniquekey;//唯一标识
 
     public String type;//类型1
@@ -46,5 +52,113 @@ public class NewsItem {
     public String realtype;//类型2
 
     public int showType;//展示方式 0. 大图 1.小图左 2.小图右
+
+@Generated(hash = 1596068178)
+public NewsItem(String title, String date, String authorName, String thumbnailPics, String thumbnailPics02,
+        String thumbnailPics03, String url, String uniquekey, String type, String realtype, int showType) {
+    this.title = title;
+    this.date = date;
+    this.authorName = authorName;
+    this.thumbnailPics = thumbnailPics;
+    this.thumbnailPics02 = thumbnailPics02;
+    this.thumbnailPics03 = thumbnailPics03;
+    this.url = url;
+    this.uniquekey = uniquekey;
+    this.type = type;
+    this.realtype = realtype;
+    this.showType = showType;
+}
+
+@Generated(hash = 1697690472)
+public NewsItem() {
+}
+
+public String getTitle() {
+    return this.title;
+}
+
+public void setTitle(String title) {
+    this.title = title;
+}
+
+public String getDate() {
+    return this.date;
+}
+
+public void setDate(String date) {
+    this.date = date;
+}
+
+public String getAuthorName() {
+    return this.authorName;
+}
+
+public void setAuthorName(String authorName) {
+    this.authorName = authorName;
+}
+
+public String getThumbnailPics() {
+    return this.thumbnailPics;
+}
+
+public void setThumbnailPics(String thumbnailPics) {
+    this.thumbnailPics = thumbnailPics;
+}
+
+public String getThumbnailPics02() {
+    return this.thumbnailPics02;
+}
+
+public void setThumbnailPics02(String thumbnailPics02) {
+    this.thumbnailPics02 = thumbnailPics02;
+}
+
+public String getThumbnailPics03() {
+    return this.thumbnailPics03;
+}
+
+public void setThumbnailPics03(String thumbnailPics03) {
+    this.thumbnailPics03 = thumbnailPics03;
+}
+
+public String getUrl() {
+    return this.url;
+}
+
+public void setUrl(String url) {
+    this.url = url;
+}
+
+public String getUniquekey() {
+    return this.uniquekey;
+}
+
+public void setUniquekey(String uniquekey) {
+    this.uniquekey = uniquekey;
+}
+
+public String getType() {
+    return this.type;
+}
+
+public void setType(String type) {
+    this.type = type;
+}
+
+public String getRealtype() {
+    return this.realtype;
+}
+
+public void setRealtype(String realtype) {
+    this.realtype = realtype;
+}
+
+public int getShowType() {
+    return this.showType;
+}
+
+public void setShowType(int showType) {
+    this.showType = showType;
+}
 
 }

@@ -5,4 +5,5 @@ package fragment;
  */
 
 public class MineFragment extends BaseFragment{
+
 }

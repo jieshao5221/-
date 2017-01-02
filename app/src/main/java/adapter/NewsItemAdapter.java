@@ -9,16 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.qiao.rlj.myapplication.R;
 import com.qiao.rlj.myapplication.WebActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import bean.NewsItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import greendao.gen.DBManger;
+import view.PopupList;
 
 /**
  * Created by renlijie on 16/12/28.
@@ -83,6 +87,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 context.startActivity(intent);
             }
         });
+        bindPopMenu(holder.ll,item);
 
 
     }
@@ -115,6 +120,63 @@ public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
+    /**
+     * 删除指定数据
+     * @param item
+     */
+    public void deleteItem(NewsItem item){
+        itemList.remove(item);
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 收藏指定新闻
+     * @param newsItem
+     */
+    public void collectNewsItem(NewsItem newsItem){
+        DBManger.getDbManger(context).insertNewsItem(newsItem);
+    }
+
+    /**
+     * 弹出吐司
+     * @param message
+     */
+    public void doToast(String message){
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 绑定气泡菜单
+     * @param ll
+     * @param item
+     */
+    public void bindPopMenu(LinearLayout ll, final NewsItem item){
+        List<String> popupListMenu = new ArrayList<>();
+        popupListMenu.add(context.getResources().getString(R.string.menu_collection));
+        popupListMenu.add(context.getResources().getString(R.string.menu_delete));
+        PopupList popupList = new PopupList();
+        popupList.init(context,ll, popupListMenu, new PopupList.OnPopupListClickListener() {
+            @Override
+            public void onPopupListClick(View contextView, int contextPosition, int position) {
+                switch (position){
+                    case 0:
+                        collectNewsItem(item);
+                        doToast("收藏成功");
+                        break;
+                    case 1:
+                        deleteItem(item);
+                        doToast("删除成功");
+                        break;
+                }
+            }
+
+        });
+        popupList.setTextSize(popupList.sp2px(15));
+        popupList.setTextPadding(popupList.dp2px(10), popupList.dp2px(5), popupList.dp2px(10), popupList.dp2px(5));
+        popupList.setIndicatorView(popupList.getDefaultIndicatorView(popupList.dp2px(16), popupList.dp2px(8), 0xFF444444));
+
+    }
+
 
     class LoadMoreViewHolder extends RecyclerView.ViewHolder{
 
@@ -140,6 +202,7 @@ public class NewsItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public NewsItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+
         }
     }
 }

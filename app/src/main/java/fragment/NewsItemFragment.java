@@ -40,8 +40,6 @@ public class NewsItemFragment extends BaseFragment implements INewsItemFragment,
 
     private LinearLayoutManager linearLayoutManager;
 
-    private ArrayList<NewsItem> oldNewsItems = new ArrayList<>();
-
     private Unbinder unbinder;
 
     @BindView(R.id.rv)
@@ -53,6 +51,8 @@ public class NewsItemFragment extends BaseFragment implements INewsItemFragment,
 
     @BindColor(R.color.colorPrimary)
     int color; //进度条颜色
+
+
 
     @Nullable
     @Override
