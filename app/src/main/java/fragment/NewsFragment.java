@@ -33,6 +33,15 @@ public class NewsFragment extends BaseFragment{
     ArrayList<String> list;
     ArrayList<NewsItemFragment> fragments;
 
+    private static NewsFragment newsFragment;
+
+    public static  NewsFragment getInstance(){
+        if (newsFragment == null){
+            newsFragment = new NewsFragment();
+        }
+        return newsFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

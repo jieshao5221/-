@@ -1,7 +1,8 @@
 package com.qiao.rlj.myapplication;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
@@ -12,6 +13,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fragment.NewsFragment;
+import fragment.OddPhotoFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
@@ -25,10 +27,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     /** BindResource */
     @BindString(R.string.news)
     String news;
-    @BindString(R.string.girls)
+    @BindString(R.string.odd_photo)
     String girls;
     @BindString(R.string.mine)
     String mine;
+
+    private Fragment currentFragment;
+    private final static String newsFragment = "newsFragment";
+    private final static String oddPhotoFragment = "oddPhotoFragment";
+    private FragmentManager manager;
 
 
     @Override
@@ -37,13 +44,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-        setDefaultFragment();
         initViews();
-
+        switchFragment(newsFragment);
     }
 
     private void initViews() {
-
 
         //初始化底部导航栏
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
@@ -55,20 +60,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .setFirstSelectedPosition(0)
                 .setTabSelectedListener(this)
                 .initialise();
-    }
 
-    /**设置默认选中的fragment*/
-    private void setDefaultFragment(){
-        NewsFragment nf = new NewsFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container,nf);
-        ft.commit();
+        manager = getSupportFragmentManager();
+
     }
 
     /**底部导航栏监听器*/
     @Override
     public void onTabSelected(int position) {
-
+        switch (position){
+            case 0:
+                switchFragment(newsFragment);
+                break;
+            case 1:
+                switchFragment(oddPhotoFragment);
+                break;
+            case 2:
+                break;
+        }
     }
 
     @Override
@@ -78,6 +87,42 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     @Override
     public void onTabReselected(int position) {
+
+    }
+
+    /**
+     * 切换fragment
+     * @param tag
+     */
+    private void switchFragment(String tag){
+        Fragment fragment = manager.findFragmentByTag(tag);
+        if (fragment == null){
+            switch (tag){
+                case newsFragment:
+                    fragment = NewsFragment.getInstance();
+                    if(currentFragment != null){
+                        manager.beginTransaction().hide(currentFragment).add(R.id.fragment_container,fragment,tag).commit();
+                    }else {
+                        manager.beginTransaction().add(R.id.fragment_container,fragment,tag).commit();
+                    }
+
+                    currentFragment = fragment;
+
+                    break;
+                case oddPhotoFragment:
+                    fragment = OddPhotoFragment.getInstance();
+                    if(currentFragment != null){
+                        manager.beginTransaction().hide(currentFragment).add(R.id.fragment_container,fragment,tag).commit();
+                    }else {
+                        manager.beginTransaction().add(R.id.fragment_container,fragment,tag).commit();
+                    }
+                    currentFragment = fragment;
+                    break;
+            }
+        }else if (fragment.isHidden()){
+            manager.beginTransaction().hide(currentFragment).show(fragment).commit();
+            currentFragment = fragment;
+        }
 
     }
 

@@ -14,10 +14,11 @@ public abstract class RetrofitUtils {
 
 
     private static Retrofit mRetrofit;
+    private static Retrofit mOddPhotoRetrofit;
     private static OkHttpClient mOkHttpClient;
 
     /**
-     * 获取Retrofit实例
+     * 获取NewsRetrofit实例
      * @return
      */
     public static Retrofit getRetrofit(){
@@ -37,5 +38,26 @@ public abstract class RetrofitUtils {
         }
 
         return mRetrofit;
+    }
+
+    /**
+     * 获取NewsRetrofit实例
+     * @return
+     */
+    public static Retrofit getmOddPhotoRetrofit(){
+
+        if(mOddPhotoRetrofit == null){
+
+            if(null == mOkHttpClient){
+                mOkHttpClient = OkhttpClientUtil.getOkhttpClient();
+            }
+            mOddPhotoRetrofit = new Retrofit.Builder()
+                    .baseUrl(Const.ODD_PHOTO_SERVER + "/") //设置baseUrl
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .client(mOkHttpClient)
+                    .build();
+        }
+        return mOddPhotoRetrofit;
     }
 }

@@ -12,6 +12,7 @@ import rx.Observable;
  */
 
 public interface NewsService {
+
     /**
      * 请求新闻
      * @param type
@@ -22,4 +23,5 @@ public interface NewsService {
     @FormUrlEncoded
     @POST("toutiao/index?")
     Observable<Result<News>> getTopNews(@Field("type") String type, @Field("key") String key);
+
 }

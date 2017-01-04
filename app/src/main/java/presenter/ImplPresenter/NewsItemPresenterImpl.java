@@ -1,5 +1,9 @@
 package presenter.ImplPresenter;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
 import bean.News;
 import bean.Result;
 import presenter.IPresenter.INewsItemPresenter;
@@ -48,7 +52,12 @@ public class NewsItemPresenterImpl extends BasePresenter implements INewsItemPre
                     @Override
                     public void onNext(Result<News> newsResult) {
                         iNewsItemFragment.hidProgressDialog();
+                        if(newsResult.result.newsList.size() <=0){
+                            iNewsItemFragment.showError("暂无数据");
+                            return;
+                        }
                         iNewsItemFragment.updateList(newsResult);
+                        Log.i("TAG",new Gson().toJson(newsResult));
                     }
                 });
         addSubscription(s);

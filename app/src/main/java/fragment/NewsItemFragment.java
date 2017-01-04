@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.qiao.rlj.myapplication.R;
 
@@ -146,6 +147,8 @@ public class NewsItemFragment extends BaseFragment implements INewsItemFragment,
     @Override
     public void showError(String error) {
         emptyView.setVisibility(View.VISIBLE);
+        swipeRefreshLayout.setRefreshing(false);
+        Toast.makeText(getActivity(),error,Toast.LENGTH_SHORT).show();
     }
 
     @Override

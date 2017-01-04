@@ -3,12 +3,14 @@
     <string name="news">头条</string>
     <string name="girls">妹子</string>
     <string name="mine">我的</string>
-    <string name="news_title">新闻头条</string>
+    <string name="news_title">头条</string>
+    <string name="odd_photo_title">趣图</string>
     <string name="retry">重新加载</string>
     <string name="load_failed">加载失败,下拉重新加载 ...</string>
     <string name="loading">正在加载...</string>
     <string name="menu_collection">收藏</string>
     <string name="menu_delete">删除</string>
+    <string name="odd_photo">趣图</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -7,7 +7,7 @@ android {
     buildToolsVersion "24.0.1"
     defaultConfig {
         applicationId "com.qiao.rlj.myapplication"
-        minSdkVersion 21
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -47,10 +47,11 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.android.support:recyclerview-v7:25.0.1'
-
     /**fresco*/
     compile 'com.facebook.fresco:fresco:0.12.0'
-
+    compile 'com.facebook.fresco:animated-gif:0.12.0'
     /**greendao*/
     compile 'org.greenrobot:greendao:3.2.0'
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
 }
